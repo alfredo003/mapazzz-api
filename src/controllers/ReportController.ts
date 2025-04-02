@@ -22,7 +22,6 @@ export class ReportController {
 
       res.status(200).json(reports);
     } catch (error) {
-      console.error("Error fetching reports:", error);
       res.status(500).json({ error: "Failed to fetch reports" });
     }
   }
@@ -32,11 +31,11 @@ export class ReportController {
       const { title } = req.params;
       const snapshot = await connectiondb
         .collection("reports")
-        .where("title", "==", title) // Filtra pelo título
+        .where("title", "==", title)
         .get();
 
       if (snapshot.empty) {
-        return res.status(404).json({ message: "No report found with the given title" });
+        return res.status(404).json({ message: "Nenhum relatório encontrado com o título dado" });
       }
 
       const reports = snapshot.docs.map((doc) => {
@@ -56,8 +55,26 @@ export class ReportController {
 
       res.status(200).json(reports);
     } catch (error) {
-      console.error("Error fetching report by title:", error);
       res.status(500).json({ error: "Failed to fetch report by title" });
     }
   }
+
+  static async getAllZona(req: Request, res: Response) {
+    try {
+      const snapshot = await connectiondb.collection("reports").get();
+      const reports = snapshot.docs.map((doc) => {
+        const data = doc.data();
+        return {
+            location: data.location,
+            longitude: data.longitude,
+            riskLevel: data.riskLevel,
+        };
+      });
+
+      res.status(200).json(reports);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch reports" });
+    }
+  }
+  
 }

@@ -1,11 +1,14 @@
 import { Router } from "express";
 import { ReportController } from "../controllers/ReportController";
-import connectiondb from "../database/firebase";
 
 const reportRoutes = Router();
 
 
 reportRoutes.get("/", ReportController.getAllReports);
-reportRoutes.get("/{title}", ReportController.getReportBytitle);
+reportRoutes.get("/buscar/:title", ReportController.getReportBytitle);
+reportRoutes.get("/zonas", ReportController.getAllZona);
+
+
+
 
 export default reportRoutes;

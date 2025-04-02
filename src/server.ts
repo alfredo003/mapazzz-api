@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import connectiondb from "./database/firebase";
-import reportRoutes from "./routes/Report.routes";
+import reportRoutes from "./routes/ReportRoutes";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
