@@ -5,7 +5,9 @@ const reportRoutes = Router();
 
 
 reportRoutes.get("/", ReportController.getAllReports);
-reportRoutes.get("/buscar/:title", ReportController.getReportBytitle);
+reportRoutes.get("/buscar/:title", async (req, res) => {
+  await ReportController.getReportBytitle(req, res);
+});
 reportRoutes.get("/zonas", ReportController.getAllZona);
 
 
