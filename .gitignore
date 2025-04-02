@@ -1,3 +1,4 @@
 node_modules
 .env
 dist
+mapazzz-firebase.json
