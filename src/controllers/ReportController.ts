@@ -66,7 +66,7 @@ export class ReportController {
         const data = doc.data();
         return {
             location: data.location,
-            latitude: data.latitude,
+	    latitude:data.latitude,
             longitude: data.longitude,
             riskLevel: data.riskLevel,
         };
