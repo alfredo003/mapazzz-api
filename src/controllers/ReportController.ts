@@ -12,7 +12,7 @@ export class ReportController {
           imageUrl: data.imageUrl,
           latitude: data.latitude,
           location: data.location,
-          longitude: data.longitude ,
+          longitude: data.longitude,
           riskLevel: data.riskLevel,
           solutionAi: data.solutionAi,
           status: data.status,
@@ -35,7 +35,9 @@ export class ReportController {
         .get();
 
       if (snapshot.empty) {
-        return res.status(404).json({ message: "Nenhum relatório encontrado com o título dado" });
+        return res
+          .status(404)
+          .json({ message: "Nenhum relatório encontrado com o título dado" });
       }
 
       const reports = snapshot.docs.map((doc) => {
@@ -65,9 +67,10 @@ export class ReportController {
       const reports = snapshot.docs.map((doc) => {
         const data = doc.data();
         return {
-            location: data.location,
-            longitude: data.longitude,
-            riskLevel: data.riskLevel,
+          location: data.location,
+          latitude: data.latitude,
+          longitude: data.longitude,
+          riskLevel: data.riskLevel,
         };
       });
 
@@ -76,5 +79,4 @@ export class ReportController {
       res.status(500).json({ error: "Failed to fetch reports" });
     }
   }
-  
 }
